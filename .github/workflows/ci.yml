@@ -32,4 +32,5 @@ jobs:
       with:
         commit_message: "Update documentation"
         commit_user_name: "github-actions"
+        file_pattern: README.md
     
