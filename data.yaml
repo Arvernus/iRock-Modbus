@@ -49,12 +49,14 @@ general:
       ValueType: "float32"
       description: "Current flowing in or out of the battery. Positive values indicate charging, negative values indicate discharging."
       unit: "A"
+      hardware_support_register: "auto"
     Battery_SOC:
       name: "SOC"
       address: 40
       ValueType: "float32"
       description: "State of Charge (SOC) of the battery."
       unit: "%"
+      hardware_support_register: "auto"
     Capacity:
       name: "Capacity"
       address: 42
@@ -67,6 +69,7 @@ general:
       ValueType: "float32"
       description: "Remaining available capacity in the battery pack."
       unit: "Ah"
+      hardware_support_register: "auto"
     Max_Charge_Current:
       name: "Max Charge Current"
       address: 46
@@ -97,33 +100,45 @@ general:
       ValueType: "float32"
       description: "Temperature reading from sensor 1."
       unit: "°C"
+      hardware_support_register: "auto"
     Temperature_Sensor_2:
       name: "Temperature Sensor 2"
       address: 56
       ValueType: "float32"
       description: "Temperature reading from sensor 2."
       unit: "°C"
+      hardware_support_register: "auto"
     Temperature_Sensor_3:
       name: "Temperature Sensor 3"
       address: 58
       ValueType: "float32"
       description: "Temperature reading from sensor 3."
       unit: "°C"
+      hardware_support_register: "auto"
     Temperature_Sensor_4:
       name: "Temperature Sensor 4"
       address: 60
       ValueType: "float32"
       description: "Temperature reading from sensor 4."
       unit: "°C"
+      hardware_support_register: "auto"
     MOSFET_Temperature:
       name: "MOSFET Temperature"
       address: 62
       ValueType: "float32"
       description: "MOSFET temperature sensor reading."
       unit: "°C"
+      hardware_support_register: "auto"
+    Feedback_Shunt_Current:
+      name: "Feedback Shunt Current"
+      address: "auto"
+      ValueType: "float32"
+      description: "Current flowing through the feedback shunt. The feedback shunt messures the current of all ballancers in sum."
+      unit: "A"
+      hardware_support_register: "auto"
 
 cells:
-  address: 64
+  address: "auto"
   registers:
     Cell_Voltage:
       name: "Cell Voltage"
@@ -136,8 +151,3 @@ cells:
       offset: 2
       ValueType: "bool"
       description: "Boolean indicating if the cells balancer is active. `true` indicates active, `false` indicates inactive."
-    res:
-      name: "Reserved"
-      offset: 3
-      ValueType: "uint16"
-      description: "Reserved"
