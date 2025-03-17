@@ -142,12 +142,12 @@ cells:
   registers:
     Cell_Voltage:
       name: "Cell Voltage"
-      offset: 0
+      offset: "auto"
       ValueType: "float32"
       description: "Voltage of cell."
       unit: "V"
     Cell_Balance_Status:
       name: "Cell Balance Status"
-      offset: 2
+      offset: "auto"
       ValueType: "bool"
       description: "Boolean indicating if the cells balancer is active. `true` indicates active, `false` indicates inactive."
