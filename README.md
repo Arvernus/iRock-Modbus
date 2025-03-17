@@ -1,4 +1,4 @@
-# iRock Modbus Registers 1.0.0
+# iRock Modbus Registers 1.1.0
 
 All provided fields will be accessible in the Holding Registers. Each field can be split into multiple registers depending on its length. Fields that are not supported by all hardware will additionally write to a coil to indicate whether this function is supported.
 
@@ -14,28 +14,28 @@ All provided fields will be accessible in the Holding Registers. Each field can 
 |Software Version|27|char[16]|None|
 |Number of Cells|35|uint16|None|
 |Battery Voltage|36|float32|None|
-|Battery Current|38|float32|None|
-|SOC|40|float32|None|
+|Battery Current|38|float32|0|
+|SOC|40|float32|1|
 |Capacity|42|float32|None|
-|Remaining Capacity|44|float32|None|
+|Remaining Capacity|44|float32|2|
 |Max Charge Current|46|float32|None|
 |Max Discharge Current|48|float32|None|
 |Max Cell Voltage|50|float32|None|
 |Min Cell Voltage|52|float32|None|
-|Temperature Sensor 1|54|float32|None|
-|Temperature Sensor 2|56|float32|None|
-|Temperature Sensor 3|58|float32|None|
-|Temperature Sensor 4|60|float32|None|
-|MOSFET Temperature|62|float32|None|
-|Cell Voltage 1|64|float32|None|
-|Cell Balance Status 1|66|bool|None|
-|Reserved 1|67|uint16|None|
-|Cell Voltage 2|68|float32|None|
-|Cell Balance Status 2|70|bool|None|
-|Reserved 2|71|uint16|None|
+|Temperature Sensor 1|54|float32|3|
+|Temperature Sensor 2|56|float32|4|
+|Temperature Sensor 3|58|float32|5|
+|Temperature Sensor 4|60|float32|6|
+|MOSFET Temperature|62|float32|7|
+|Feedback Shunt Current|64|float32|8|
+|Cell Voltage 1|66|float32|None|
+|Cell Balance Status 1|68|bool|None|
+|Cell Voltage 2|69|float32|None|
+|Cell Balance Status 2|71|bool|None|
 |Cell Voltage 3|72|float32|None|
 |Cell Balance Status 3|74|bool|None|
-|Reserved 3|75|uint16|None|
+|...| | | |
+
 ## Supported Data Types
 
 In this documentation, we support a fixed set of data types. Each type has a defined bit width, and **all types can also be defined as arrays**.  
@@ -148,6 +148,7 @@ Total voltage of the battery pack.
 |38| `float32` | 2 |
 
 Current flowing in or out of the battery. Positive values indicate charging, negative values indicate discharging.
+iRock may set coil 0 to true if function is supported.
 
 ### SOC [%]
 
@@ -156,6 +157,7 @@ Current flowing in or out of the battery. Positive values indicate charging, neg
 |40| `float32` | 2 |
 
 State of Charge (SOC) of the battery.
+iRock may set coil 1 to true if function is supported.
 
 ### Capacity [Ah]
 
@@ -172,6 +174,7 @@ Total capacity of the battery pack.
 |44| `float32` | 2 |
 
 Remaining available capacity in the battery pack.
+iRock may set coil 2 to true if function is supported.
 
 ### Max Charge Current [A]
 
@@ -212,6 +215,7 @@ Minimum voltage recorded for any single cell.
 |54| `float32` | 2 |
 
 Temperature reading from sensor 1.
+iRock may set coil 3 to true if function is supported.
 
 ### Temperature Sensor 2 [°C]
 
@@ -220,6 +224,7 @@ Temperature reading from sensor 1.
 |56| `float32` | 2 |
 
 Temperature reading from sensor 2.
+iRock may set coil 4 to true if function is supported.
 
 ### Temperature Sensor 3 [°C]
 
@@ -228,6 +233,7 @@ Temperature reading from sensor 2.
 |58| `float32` | 2 |
 
 Temperature reading from sensor 3.
+iRock may set coil 5 to true if function is supported.
 
 ### Temperature Sensor 4 [°C]
 
@@ -236,6 +242,7 @@ Temperature reading from sensor 3.
 |60| `float32` | 2 |
 
 Temperature reading from sensor 4.
+iRock may set coil 6 to true if function is supported.
 
 ### MOSFET Temperature [°C]
 
@@ -244,12 +251,22 @@ Temperature reading from sensor 4.
 |62| `float32` | 2 |
 
 MOSFET temperature sensor reading.
+iRock may set coil 7 to true if function is supported.
+
+### Feedback Shunt Current [A]
+
+| Register | Type           | Size |
+|-|-|-|
+|64| `float32` | 2 |
+
+Current flowing through the feedback shunt. The feedback shunt messures the current of all ballancers in sum.
+iRock may set coil 8 to true if function is supported.
 
 ### Cells
 
-The cell fields repeat as many times as there are cells in the corresponding iRock. The starting address for cell 1 is 64, and the starting address for each subsequent cell is the next available free address. So a Cell Register is calculated as follows:
+The cell fields repeat as many times as there are cells in the corresponding iRock. The starting address for cell 1 is 66, and the starting address for each subsequent cell is the next available free address. So a Cell Register is calculated as follows:
 
-$$Starting Address + Offset + \left(Last Cell Offset + Last Cell Size\right) * \left( Cell Number -1 \right)=64 + Offset + \left(3 + 1\right) * \left( Cell Number -1 \right)$$
+$$Starting Address + Offset + \left(Last Cell Offset + Last Cell Size\right) * \left( Cell Number -1 \right)=66 + Offset + \left(2 + 1\right) * \left( Cell Number -1 \right)$$
 
 #### Cell Voltage [V]
 
@@ -266,13 +283,5 @@ Voltage of cell.
 |2|`bool`|1|
 
 Boolean indicating if the cells balancer is active. `true` indicates active, `false` indicates inactive.
-
-#### Reserved
-
-| Offset | Type           | Size |
-|-|-|-|
-|3|`uint16`|1|
-
-Reserved
 
 _This documentation was automatically generated from the YAML configuration file._
