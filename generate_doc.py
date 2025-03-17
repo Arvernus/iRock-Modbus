@@ -15,6 +15,7 @@ def generate_markdown(data, output_file):
         f.write("| |Register|Type|Hardware Supported Register|\n|-|-|-|-|\n")
         for reg in registers.get_all_registers(3):
             f.write(f"|{reg.name}|{reg.address}|{reg.value_type}|{reg.hardware_support_register}|\n")
+        f.write("|...| | | |\n\n")
         f.write("## Supported Data Types\n\n")
         f.write("In this documentation, we support a fixed set of data types. Each type has a defined bit width, and **all types can also be defined as arrays**.  \n")
         f.write("Arrays are declared using the notation `Type[N]`, where `N` is the number of elements. For example, `char[10]` represents an array of 10 characters, with each character occupying 8 bits.\n\n")
