@@ -44,7 +44,17 @@
               "description": "A short description of the meaning of this register for automatic documentation."
             },
             "hardware_support_register": {
-              "type": "integer",
+              "oneOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "string",
+                  "enum": [
+                    "auto"
+                  ]
+                }
+              ],
               "description": "Address of the Coil register that indicates whether this function is supported by the hardware."
             }
           },
@@ -99,7 +109,17 @@
               "description": "A short description of the meaning of this register for automatic documentation."
             },
             "hardware_support_register": {
-              "type": "integer",
+              "oneOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "string",
+                  "enum": [
+                    "auto"
+                  ]
+                }
+              ],
               "description": "Address of the Coil register that indicates whether this function is supported by the hardware."
             }
           },
