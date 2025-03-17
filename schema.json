@@ -1,0 +1,172 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "iRock-Modbus Config Schema",
+  "description": "Schema for defining the Modbus register configuration.",
+  "type": "object",
+  "definitions": {
+    "registers": {
+      "type": "object",
+      "description": "An object that defines Modbus registers.",
+      "patternProperties": {
+        ".*": {
+          "type": "object",
+          "description": "A single register with its properties.",
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "The name of the register."
+            },
+            "address": {
+              "oneOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "string",
+                  "enum": [
+                    "auto"
+                  ]
+                }
+              ],
+              "description": "The Modbus address of the holding register."
+            },
+            "ValueType": {
+              "type": "string",
+              "description": "The data type of the register. It follows the data types used in C++ and Arduino.",
+              "pattern": "^(int8|uint8|int16|uint16|int32|uint32|float32|float64|bool|char)(?:\\[\\d+\\])*$"
+            },
+            "unit": {
+              "type": "string",
+              "description": "The physical unit of the value (e.g., °C, V, A)."
+            },
+            "description": {
+              "type": "string",
+              "description": "A short description of the meaning of this register for automatic documentation."
+            },
+            "hardware_support_register": {
+              "type": "integer",
+              "description": "Address of the Coil register that indicates whether this function is supported by the hardware."
+            }
+          },
+          "required": [
+            "name",
+            "address",
+            "ValueType",
+            "description"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "cell_registers": {
+      "type": "object",
+      "description": "An object that defines Modbus registers.",
+      "patternProperties": {
+        ".*": {
+          "type": "object",
+          "description": "A single register with its properties.",
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "The name of the register."
+            },
+            "offset": {
+              "oneOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "string",
+                  "enum": [
+                    "auto"
+                  ]
+                }
+              ],
+              "description": "The Modbus address of the holding register."
+            },
+            "ValueType": {
+              "type": "string",
+              "description": "The data type of the register. It follows the data types used in C++ and Arduino.",
+              "pattern": "^(int8|uint8|int16|uint16|int32|uint32|float32|float64|bool|char)(?:\\[\\d+\\])*$"
+            },
+            "unit": {
+              "type": "string",
+              "description": "The physical unit of the value (e.g., °C, V, A)."
+            },
+            "description": {
+              "type": "string",
+              "description": "A short description of the meaning of this register for automatic documentation."
+            },
+            "hardware_support_register": {
+              "type": "integer",
+              "description": "Address of the Coil register that indicates whether this function is supported by the hardware."
+            }
+          },
+          "required": [
+            "name",
+            "offset",
+            "ValueType",
+            "description"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "properties": {
+    "version": {
+      "type": "string",
+      "description": "Version number of the configuration (SemVer format).",
+      "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?$"
+    },
+    "general": {
+      "type": "object",
+      "description": "General register configuration.",
+      "properties": {
+        "registers": {
+          "$ref": "#/definitions/registers"
+        }
+      },
+      "required": [
+        "registers"
+      ],
+      "additionalProperties": false
+    },
+    "cells": {
+      "type": "object",
+      "description": "Repeating registers for each cell.",
+      "properties": {
+        "registers": {
+          "$ref": "#/definitions/cell_registers"
+        },
+        "address": {
+          "oneOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "string",
+              "enum": [
+                "auto"
+              ]
+            }
+          ],
+          "description": "The address of the first cell register."
+        }
+      },
+      "required": [
+        "registers",
+        "address"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "version",
+    "general",
+    "cells"
+  ],
+  "additionalProperties": false
+}
