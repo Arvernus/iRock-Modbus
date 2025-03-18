@@ -38,10 +38,10 @@ def generate_markdown(data, output_file):
         f.write("  64-bit floating point number (similar to `double` in many languages).  \n\n")
         
         f.write("- **bool**  \n")
-        f.write("  Boolean value. Although theoretically 1 bit is enough, in practice, a full byte (8 bits) is often used.  \n\n")
+        f.write("  Boolean value, represented as 1 bit.  `true` is represented as `1`, and `false` is represented as `0`.  \n\n")
         
         f.write("- **char**  \n")
-        f.write("  8-bit character.  \n\n")
+        f.write("  8-bit character. See the ASCII table for character representation.  \n\n")
         
         f.write("> **Note:**  \n")
         f.write("> All the data types listed above can be used as arrays. For example, `int16[5]` is interpreted as an array with 5 elements of type `int16`. The total bit size is calculated by multiplying the bit size of the base type by the number of elements.\n\n")
@@ -82,8 +82,8 @@ def generate_markdown(data, output_file):
                 last_cell_offset = reg.address
                 last_cell_size = reg.value_type.registers_required()
         total_size = last_cell_offset + last_cell_size
-        f.write(f"The cell fields repeat as many times as there are cells in the corresponding iRock. The starting address for cell 1 is {registers.cell_start_address}, and the starting address for each subsequent cell is the next available free address. So a Cell Register is calculated as follows:\n\n")
-        f.write(f"$$Starting Address + Offset + \\left(Last Cell Offset + Last Cell Size\\right) * \\left( Cell Number -1 \\right)={registers.cell_start_address} + Offset + \\left({last_cell_offset} + {last_cell_size}\\right) * \\left( Cell Number -1 \\right)$$\n\n")
+        f.write(f"The cell fields repeat as many times as there are cells in the corresponding iRock. Cell numbering starts with 1. The starting address for cell 1 is {registers.cell_start_address}, and the starting address for each subsequent cell is the next available free address. So a Cell Register is calculated as follows:\n\n")
+        f.write(f"$$Starting Address + Offset + \\left(Last Cell Offset + Last Cell Size\\right) * \\left( Cell Number -1 \\right)$$\n$$={registers.cell_start_address} + Offset + \\left({last_cell_offset} + {last_cell_size}\\right) * \\left( Cell Number -1 \\right)$$\n$$={registers.cell_start_address} + Offset + {last_cell_offset + last_cell_size} * \\left( Cell Number -1 \\right)$$\n\n")
         
         for reg in registers.cell_registers:
             f.write(f"#### {reg.name}")
