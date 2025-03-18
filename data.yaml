@@ -161,16 +161,19 @@ general:
       address: auto
       ValueType: bool
       description: "Indicates if a low state of charge alarm is active. `true` indicates active, `false` indicates inactive."
+      hardware_support_register: auto
     High_Charge_Current:
       name: "High Charge Current"
       address: auto
       ValueType: bool
       description: "Indicates if a high charge current alarm is active. `true` indicates active, `false` indicates inactive."
+      hardware_support_register: auto
     High_Discharge_Current:
       name: "High Discharge Current"
       address: auto
       ValueType: bool
       description: "Indicates if a high discharge current alarm is active. `true` indicates active, `false` indicates inactive."
+      hardware_support_register: auto
 
 cells:
   address: auto
