@@ -35,12 +35,14 @@ All provided fields will be accessible in the Holding Registers. Each field can 
 |Low SOC|70|bool|9|
 |High Charge Current|71|bool|10|
 |High Discharge Current|72|bool|11|
-|Cell Voltage 1|73|float32|None|
-|Cell Balance Status 1|75|bool|None|
-|Cell Voltage 2|76|float32|None|
-|Cell Balance Status 2|78|bool|None|
-|Cell Voltage 3|79|float32|None|
-|Cell Balance Status 3|81|bool|None|
+|Temperature Alarm|73|bool|12|
+|ALTERNATIVE: Alarm|74|bool[8]|None|
+|Cell Voltage 1|75|float32|None|
+|Cell Balance Status 1|77|bool|None|
+|Cell Voltage 2|78|float32|None|
+|Cell Balance Status 2|80|bool|None|
+|Cell Voltage 3|81|float32|None|
+|Cell Balance Status 3|83|bool|None|
 |...| | | |
 
 ## Supported Data Types
@@ -338,11 +340,28 @@ iRock may set coil 10 to true if function is supported.
 Indicates if a high discharge current alarm is active. `true` indicates active, `false` indicates inactive.
 iRock may set coil 11 to true if function is supported.
 
+### Temperature Alarm
+
+| Register | Type           | Size |
+|-|-|-|
+|73| `bool` | 1 |
+
+Indicates if a temperature alarm is active. `true` indicates active, `false` indicates inactive.
+iRock may set coil 12 to true if function is supported.
+
+### ALTERNATIVE: Alarm
+
+| Register | Type           | Size |
+|-|-|-|
+|74| `bool[8]` | 1 |
+
+Array of boolean values indicating which alarms are active. The array is ordered as follows: `Low Voltage`, `High Voltage`, `Low Cell Voltage`, `High Cell Voltage`, `Low SOC`, `High Charge Current`, `High Discharge Current`, `Temperatur`. `true` indicates active, `false` indicates inactive. Alams not supported by the hardware are always `false`.
+
 ### Cells
 
-The cell fields repeat as many times as there are cells in the corresponding iRock. The starting address for cell 1 is 73, and the starting address for each subsequent cell is the next available free address. So a Cell Register is calculated as follows:
+The cell fields repeat as many times as there are cells in the corresponding iRock. The starting address for cell 1 is 75, and the starting address for each subsequent cell is the next available free address. So a Cell Register is calculated as follows:
 
-$$Starting Address + Offset + \left(Last Cell Offset + Last Cell Size\right) * \left( Cell Number -1 \right)=73 + Offset + \left(2 + 1\right) * \left( Cell Number -1 \right)$$
+$$Starting Address + Offset + \left(Last Cell Offset + Last Cell Size\right) * \left( Cell Number -1 \right)=75 + Offset + \left(2 + 1\right) * \left( Cell Number -1 \right)$$
 
 #### Cell Voltage [V]
 
