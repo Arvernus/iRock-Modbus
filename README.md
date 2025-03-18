@@ -32,9 +32,9 @@ All provided fields will be accessible in the Holding Registers. Each field can 
 |High Voltage Alarm|67|bool|None|
 |Low Cell Voltage|68|bool|None|
 |High Cell Voltage|69|bool|None|
-|Low SOC|70|bool|None|
-|High Charge Current|71|bool|None|
-|High Discharge Current|72|bool|None|
+|Low SOC|70|bool|9|
+|High Charge Current|71|bool|10|
+|High Discharge Current|72|bool|11|
 |Cell Voltage 1|73|float32|None|
 |Cell Balance Status 1|75|bool|None|
 |Cell Voltage 2|76|float32|None|
@@ -308,6 +308,7 @@ Indicates if a high cell voltage alarm is active. `true` indicates active, `fals
 |70| `bool` | 1 |
 
 Indicates if a low state of charge alarm is active. `true` indicates active, `false` indicates inactive.
+iRock may set coil 9 to true if function is supported.
 
 ### High Charge Current
 
@@ -316,6 +317,7 @@ Indicates if a low state of charge alarm is active. `true` indicates active, `fa
 |71| `bool` | 1 |
 
 Indicates if a high charge current alarm is active. `true` indicates active, `false` indicates inactive.
+iRock may set coil 10 to true if function is supported.
 
 ### High Discharge Current
 
@@ -324,6 +326,7 @@ Indicates if a high charge current alarm is active. `true` indicates active, `fa
 |72| `bool` | 1 |
 
 Indicates if a high discharge current alarm is active. `true` indicates active, `false` indicates inactive.
+iRock may set coil 11 to true if function is supported.
 
 ### Cells
 
