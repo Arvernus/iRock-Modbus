@@ -82,6 +82,16 @@ All registers are fixed at 16 bits in length. This means that regardless of the 
 - Consequently, `char[1]` and `char[2]` both fit within one register since 1 or 2 characters at 8 bits each do not exceed 16 bits.
 - When the total bit size of a data element (or array element) exceeds 16 bits, additional registers are allocated. For example, `char[3]` (24 bits) will require 2 registers, since one register can only hold 16 bits.
 - For all data types, the number of registers used is determined by dividing the total required bit size by 16 and rounding up to the next whole number.
+## Hardware Support Register
+
+All fields provided via Modbus, regardless of their function and type, are holding registers. These are 16-bit read-write registers.
+
+The hardware support registers are the only values written to the coil, which are 1-bit read-write registers. Each register indicates whether a specific function is supported on the hardware.
+
+Functions without a defined hardware support register are supported by all hardware.
+
+> **Note:** Currently, changes written to both holding registers and coils are not evaluated and will be overwritten.
+
 ## Fields
 
 ### Manufacturer ID
