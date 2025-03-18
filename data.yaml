@@ -10,144 +10,179 @@ general:
     Modbus_Version:
       name: "Modbus Version"
       address: 1
-      ValueType: "char[16]"
+      ValueType: char[16]
       description: "Modbus protocol version, as a string in semantic versioning format. This field may not change between versions of the protocol."
     Hardware_Name:
       name: "Hardware Name"
-      address: 9
-      ValueType: "char[16]"
+      address: auto
+      ValueType: char[16]
       description: "Name of the iRock hardware. Options include: `iRock 200`, `iRock 300`, `iRock 400`, `iRock 212` or `iRock 424`."
     Hardware_Version:
       name: "Hardware Version"
-      address: 17
-      ValueType: "char[8]"
+      address: auto
+      ValueType: char[8]
       description: "Version identifier of the hardware, as a string in float format."
     Serial_Number:
       name: "Serial Number"
-      address: 21
-      ValueType: "char[12]"
+      address: auto
+      ValueType: char[12]
       description: "Unique serial number of the iRock control board."
     SW_Version:
       name: "Software Version"
-      address: 27
-      ValueType: "char[16]"
+      address: auto
+      ValueType: char[16]
       description: "Software version currently installed, as a string in semantic versioning format."
     Number_of_Cells:
       name: "Number of Cells"
-      address: 35
-      ValueType: "uint16"
+      address: auto
+      ValueType: uint16
       description: "Number of battery cells in the system. May be any number between 2 and 24."
     Battery_Voltage:
       name: "Battery Voltage"
-      address: 36
-      ValueType: "float32"
+      address: auto
+      ValueType: float32
       description: "Total voltage of the battery pack."
       unit: "V"
     Battery_Current:
       name: "Battery Current"
-      address: 38
-      ValueType: "float32"
+      address: auto
+      ValueType: float32
       description: "Current flowing in or out of the battery. Positive values indicate charging, negative values indicate discharging."
       unit: "A"
-      hardware_support_register: "auto"
+      hardware_support_register: auto
     Battery_SOC:
       name: "SOC"
-      address: 40
-      ValueType: "float32"
+      address: auto
+      ValueType: float32
       description: "State of Charge (SOC) of the battery."
       unit: "%"
-      hardware_support_register: "auto"
+      hardware_support_register: auto
     Capacity:
       name: "Capacity"
-      address: 42
-      ValueType: "float32"
+      address: auto
+      ValueType: float32
       description: "Total capacity of the battery pack."
       unit: "Ah"
     Remaining_Capacity:
       name: "Remaining Capacity"
-      address: 44
-      ValueType: "float32"
+      address: auto
+      ValueType: float32
       description: "Remaining available capacity in the battery pack."
       unit: "Ah"
-      hardware_support_register: "auto"
+      hardware_support_register: auto
     Max_Charge_Current:
       name: "Max Charge Current"
-      address: 46
-      ValueType: "float32"
+      address: auto
+      ValueType: float32
       description: "Maximum current the battery can accept."
       unit: "A"
     Max_Discharge_Current:
       name: "Max Discharge Current"
-      address: 48
-      ValueType: "float32"
+      address: auto
+      ValueType: float32
       description: "Maximum current the battery can deliver."
       unit: "A"
     Max_Cell_Voltage:
       name: "Max Cell Voltage"
-      address: 50
-      ValueType: "float32"
+      address: auto
+      ValueType: float32
       description: "Maximum voltage recorded for any single cell."
       unit: "V"
     Min_Cell_Voltage:
       name: "Min Cell Voltage"
-      address: 52
-      ValueType: "float32"
+      address: auto
+      ValueType: float32
       description: "Minimum voltage recorded for any single cell."
       unit: "V"
     Temperature_Sensor_1:
       name: "Temperature Sensor 1"
-      address: 54
-      ValueType: "float32"
+      address: auto
+      ValueType: float32
       description: "Temperature reading from sensor 1."
       unit: "°C"
-      hardware_support_register: "auto"
+      hardware_support_register: auto
     Temperature_Sensor_2:
       name: "Temperature Sensor 2"
-      address: 56
-      ValueType: "float32"
+      address: auto
+      ValueType: float32
       description: "Temperature reading from sensor 2."
       unit: "°C"
-      hardware_support_register: "auto"
+      hardware_support_register: auto
     Temperature_Sensor_3:
       name: "Temperature Sensor 3"
-      address: 58
-      ValueType: "float32"
+      address: auto
+      ValueType: float32
       description: "Temperature reading from sensor 3."
       unit: "°C"
-      hardware_support_register: "auto"
+      hardware_support_register: auto
     Temperature_Sensor_4:
       name: "Temperature Sensor 4"
-      address: 60
-      ValueType: "float32"
+      address: auto
+      ValueType: float32
       description: "Temperature reading from sensor 4."
       unit: "°C"
-      hardware_support_register: "auto"
+      hardware_support_register: auto
     MOSFET_Temperature:
       name: "MOSFET Temperature"
-      address: 62
-      ValueType: "float32"
+      address: auto
+      ValueType: float32
       description: "MOSFET temperature sensor reading."
       unit: "°C"
-      hardware_support_register: "auto"
+      hardware_support_register: auto
     Feedback_Shunt_Current:
       name: "Feedback Shunt Current"
-      address: "auto"
-      ValueType: "float32"
+      address: auto
+      ValueType: float32
       description: "Current flowing through the feedback shunt. The feedback shunt messures the current of all ballancers in sum."
       unit: "A"
-      hardware_support_register: "auto"
+      hardware_support_register: auto
+    Low_Voltage_Alarm:
+      name: "Low Voltage Alarm"
+      address: auto
+      ValueType: bool
+      description: "Indicates if a low voltage alarm is active. `true` indicates active, `false` indicates inactive."
+    High_Voltage_Alarm:
+      name: "High Voltage Alarm"
+      address: auto
+      ValueType: bool
+      description: "Indicates if a high voltage alarm is active. `true` indicates active, `false` indicates inactive."
+    Low_Cell_Voltage:
+      name: "Low Cell Voltage"
+      address: auto
+      ValueType: bool
+      description: "Indicates if a low cell voltage alarm is active. `true` indicates active, `false` indicates inactive."
+    High_Cell_Voltage:
+      name: "High Cell Voltage"
+      address: auto
+      ValueType: bool
+      description: "Indicates if a high cell voltage alarm is active. `true` indicates active, `false` indicates inactive."
+    Low_SOC:
+      name: "Low SOC"
+      address: auto
+      ValueType: bool
+      description: "Indicates if a low state of charge alarm is active. `true` indicates active, `false` indicates inactive."
+    High_Charge_Current:
+      name: "High Charge Current"
+      address: auto
+      ValueType: bool
+      description: "Indicates if a high charge current alarm is active. `true` indicates active, `false` indicates inactive."
+    High_Discharge_Current:
+      name: "High Discharge Current"
+      address: auto
+      ValueType: bool
+      description: "Indicates if a high discharge current alarm is active. `true` indicates active, `false` indicates inactive."
 
 cells:
-  address: "auto"
+  address: auto
   registers:
     Cell_Voltage:
       name: "Cell Voltage"
-      offset: "auto"
-      ValueType: "float32"
+      offset: auto
+      ValueType: float32
       description: "Voltage of cell."
       unit: "V"
     Cell_Balance_Status:
       name: "Cell Balance Status"
-      offset: "auto"
-      ValueType: "bool"
+      offset: auto
+      ValueType: bool
       description: "Boolean indicating if the cells balancer is active. `true` indicates active, `false` indicates inactive."
