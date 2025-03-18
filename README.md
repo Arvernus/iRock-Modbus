@@ -68,10 +68,10 @@ Arrays are declared using the notation `Type[N]`, where `N` is the number of ele
   64-bit floating point number (similar to `double` in many languages).  
 
 - **bool**  
-  Boolean value. Although theoretically 1 bit is enough, in practice, a full byte (8 bits) is often used.  
+  Boolean value, represented as 1 bit.  `true` is represented as `1`, and `false` is represented as `0`.  
 
 - **char**  
-  8-bit character.  
+  8-bit character. See the ASCII table for character representation.  
 
 > **Note:**  
 > All the data types listed above can be used as arrays. For example, `int16[5]` is interpreted as an array with 5 elements of type `int16`. The total bit size is calculated by multiplying the bit size of the base type by the number of elements.
@@ -359,9 +359,11 @@ Array of boolean values indicating which alarms are active. The array is ordered
 
 ### Cells
 
-The cell fields repeat as many times as there are cells in the corresponding iRock. The starting address for cell 1 is 75, and the starting address for each subsequent cell is the next available free address. So a Cell Register is calculated as follows:
+The cell fields repeat as many times as there are cells in the corresponding iRock. Cell numbering starts with 1. The starting address for cell 1 is 75, and the starting address for each subsequent cell is the next available free address. So a Cell Register is calculated as follows:
 
-$$Starting Address + Offset + \left(Last Cell Offset + Last Cell Size\right) * \left( Cell Number -1 \right)=75 + Offset + \left(2 + 1\right) * \left( Cell Number -1 \right)$$
+$$Starting Address + Offset + \left(Last Cell Offset + Last Cell Size\right) * \left( Cell Number -1 \right)$$
+$$=75 + Offset + \left(2 + 1\right) * \left( Cell Number -1 \right)$$
+$$=75 + Offset + 3 * \left( Cell Number -1 \right)$$
 
 #### Cell Voltage [V]
 
