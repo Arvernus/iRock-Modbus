@@ -28,21 +28,14 @@ All provided fields will be accessible in the Holding Registers. Each field can 
 |Temperature Sensor 4|60|float32|6|
 |MOSFET Temperature|62|float32|7|
 |Feedback Shunt Current|64|float32|8|
-|Low Voltage Alarm|66|bool|None|
-|High Voltage Alarm|67|bool|None|
-|Low Cell Voltage|68|bool|None|
-|High Cell Voltage|69|bool|None|
-|Low SOC|70|bool|9|
-|High Charge Current|71|bool|10|
-|High Discharge Current|72|bool|11|
-|Temperature Alarm|73|bool|12|
-|ALTERNATIVE: Alarm|74|bool[8]|None|
-|Cell Voltage 1|75|float32|None|
-|Cell Balance Status 1|77|bool|None|
-|Cell Voltage 2|78|float32|None|
-|Cell Balance Status 2|80|bool|None|
-|Cell Voltage 3|81|float32|None|
-|Cell Balance Status 3|83|bool|None|
+|Alarm|66|bool[8]|None|
+|Warning|67|bool[8]|None|
+|Cell Voltage 1|68|float32|None|
+|Cell Balance Status 1|70|bool|None|
+|Cell Voltage 2|71|float32|None|
+|Cell Balance Status 2|73|bool|None|
+|Cell Voltage 3|74|float32|None|
+|Cell Balance Status 3|76|bool|None|
 |...| | | |
 
 ## Supported Data Types
@@ -281,89 +274,29 @@ iRock may set coil 7 to true if function is supported.
 Current flowing through the feedback shunt. The feedback shunt messures the current of all ballancers in sum.
 iRock may set coil 8 to true if function is supported.
 
-### Low Voltage Alarm
+### Alarm
 
 | Register | Type           | Size |
 |-|-|-|
-|66| `bool` | 1 |
-
-Indicates if a low voltage alarm is active. `true` indicates active, `false` indicates inactive.
-
-### High Voltage Alarm
-
-| Register | Type           | Size |
-|-|-|-|
-|67| `bool` | 1 |
-
-Indicates if a high voltage alarm is active. `true` indicates active, `false` indicates inactive.
-
-### Low Cell Voltage
-
-| Register | Type           | Size |
-|-|-|-|
-|68| `bool` | 1 |
-
-Indicates if a low cell voltage alarm is active. `true` indicates active, `false` indicates inactive.
-
-### High Cell Voltage
-
-| Register | Type           | Size |
-|-|-|-|
-|69| `bool` | 1 |
-
-Indicates if a high cell voltage alarm is active. `true` indicates active, `false` indicates inactive.
-
-### Low SOC
-
-| Register | Type           | Size |
-|-|-|-|
-|70| `bool` | 1 |
-
-Indicates if a low state of charge alarm is active. `true` indicates active, `false` indicates inactive.
-iRock may set coil 9 to true if function is supported.
-
-### High Charge Current
-
-| Register | Type           | Size |
-|-|-|-|
-|71| `bool` | 1 |
-
-Indicates if a high charge current alarm is active. `true` indicates active, `false` indicates inactive.
-iRock may set coil 10 to true if function is supported.
-
-### High Discharge Current
-
-| Register | Type           | Size |
-|-|-|-|
-|72| `bool` | 1 |
-
-Indicates if a high discharge current alarm is active. `true` indicates active, `false` indicates inactive.
-iRock may set coil 11 to true if function is supported.
-
-### Temperature Alarm
-
-| Register | Type           | Size |
-|-|-|-|
-|73| `bool` | 1 |
-
-Indicates if a temperature alarm is active. `true` indicates active, `false` indicates inactive.
-iRock may set coil 12 to true if function is supported.
-
-### ALTERNATIVE: Alarm
-
-| Register | Type           | Size |
-|-|-|-|
-|74| `bool[8]` | 1 |
+|66| `bool[8]` | 1 |
 
 Array of boolean values indicating which alarms are active. The array is ordered as follows: `Low Voltage`, `High Voltage`, `Low Cell Voltage`, `High Cell Voltage`, `Low SOC`, `High Charge Current`, `High Discharge Current`, `Temperatur`. `true` indicates active, `false` indicates inactive. Alams not supported by the hardware are always `false`.
 
+### Warning
+
+| Register | Type           | Size |
+|-|-|-|
+|67| `bool[8]` | 1 |
+
+Array of boolean values indicating which warnings are active. The array is ordered as follows: `Low Voltage`, `High Voltage`, `Low Cell Voltage`, `High Cell Voltage`, `Low SOC`, `High Charge Current`, `High Discharge Current`, `Temperatur`. `true` indicates active, `false` indicates inactive. Warnings not supported by the hardware are always `false`.
+
 ### Cells
 
-The cell fields repeat as many times as there are cells in the corresponding iRock. Cell numbering starts with 1. The starting address for cell 1 is 75, and the starting address for each subsequent cell is the next available free address. So a Cell Register is calculated as follows:
+The cell fields repeat as many times as there are cells in the corresponding iRock. Cell numbering starts with 1. The starting address for cell 1 is 68, and the starting address for each subsequent cell is the next available free address. So a Cell Register is calculated as follows:
 
 $$Starting Address + Offset + \left(Last Cell Offset + Last Cell Size\right) * \left( Cell Number -1 \right)$$
-$$=75 + Offset + \left(2 + 1\right) * \left( Cell Number -1 \right)$$
-$$=75 + Offset + 3 * \left( Cell Number -1 \right)$$
+$$=68 + Offset + \left(2 + 1\right) * \left( Cell Number -1 \right)$$
+$$=68 + Offset + 3 * \left( Cell Number -1 \right)$$
 
 #### Cell Voltage [V]
 
