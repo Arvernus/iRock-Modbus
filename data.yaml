@@ -136,6 +136,16 @@ general:
       description: "Current flowing through the feedback shunt. The feedback shunt messures the current of all ballancers in sum."
       unit: "A"
       hardware_support_register: auto
+    Charge_FET:
+      name: "Charge FET"
+      address: auto
+      ValueType: bool
+      description: "Boolean indicating if the charge FET is active. `true` indicates active, `false` indicates inactive."
+    Discharge_FET:
+      name: "Discharge FET"
+      address: auto
+      ValueType: bool
+      description: "Boolean indicating if the discharge FET is active. `true` indicates active, `false` indicates inactive."
     Alarm:
       name: "Alarm"
       address: auto
