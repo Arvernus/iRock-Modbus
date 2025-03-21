@@ -10,7 +10,21 @@ def generate_markdown(data, output_file):
         if data.get("version"):
             f.write(f" {data.get("version")}")
         f.write("\n\nAll provided fields will be accessible in the Holding Registers. Each field can be split into multiple registers depending on its length. Fields that are not supported by all hardware will additionally write to a coil to indicate whether this function is supported.\n\n")
-        
+        f.write("## Table of Contents\n\n")
+        f.write("- [Versioning](#versioning)\n")
+        f.write("- [Overview](#overview)\n")
+        f.write("- [Supported Data Types](#supported-data-types)\n")
+        f.write("- [Register Allocation](#register-allocation)\n")
+        f.write("- [Hardware Support Register](#hardware-support-register)\n")
+        f.write("- [Fields](#fields)\n")
+        f.write("  - [General Registers](#general-registers)\n")
+        f.write("  - [Cells](#cells)\n")
+        f.write("\n")
+        f.write("## Versioning\n\n")
+        f.write(f"This table version is \"{data.get("version")}\". Future changes to the table will follow semantic versioning:\n\n")
+        f.write("- Patch version (0.0.x): Compatible changes, such as adding new fields or minor adjustments that do not affect existing registers.\n")
+        f.write("- Minor version (0.x.0): Changes that may alter values but keep the same position and length, such as updating default values or improving data types.\n")
+        f.write("- Major version (x.0.0): Comprehensive changes that may alter the position of fields, remove deprecated fields, or introduce breaking changes that require client updates.\n\n")
         f.write("## Overview\n\n")
         f.write("| |Register|Type|Hardware Supported Register|\n|-|-|-|-|\n")
         for reg in registers.get_all_registers(3):
