@@ -136,55 +136,16 @@ general:
       description: "Current flowing through the feedback shunt. The feedback shunt messures the current of all ballancers in sum."
       unit: "A"
       hardware_support_register: auto
-    Low_Voltage_Alarm:
-      name: "Low Voltage Alarm"
-      address: auto
-      ValueType: bool
-      description: "Indicates if a low voltage alarm is active. `true` indicates active, `false` indicates inactive."
-    High_Voltage_Alarm:
-      name: "High Voltage Alarm"
-      address: auto
-      ValueType: bool
-      description: "Indicates if a high voltage alarm is active. `true` indicates active, `false` indicates inactive."
-    Low_Cell_Voltage:
-      name: "Low Cell Voltage"
-      address: auto
-      ValueType: bool
-      description: "Indicates if a low cell voltage alarm is active. `true` indicates active, `false` indicates inactive."
-    High_Cell_Voltage:
-      name: "High Cell Voltage"
-      address: auto
-      ValueType: bool
-      description: "Indicates if a high cell voltage alarm is active. `true` indicates active, `false` indicates inactive."
-    Low_SOC:
-      name: "Low SOC"
-      address: auto
-      ValueType: bool
-      description: "Indicates if a low state of charge alarm is active. `true` indicates active, `false` indicates inactive."
-      hardware_support_register: auto
-    High_Charge_Current:
-      name: "High Charge Current"
-      address: auto
-      ValueType: bool
-      description: "Indicates if a high charge current alarm is active. `true` indicates active, `false` indicates inactive."
-      hardware_support_register: auto
-    High_Discharge_Current:
-      name: "High Discharge Current"
-      address: auto
-      ValueType: bool
-      description: "Indicates if a high discharge current alarm is active. `true` indicates active, `false` indicates inactive."
-      hardware_support_register: auto
-    Temperature_Alarm:
-      name: "Temperature Alarm"
-      address: auto
-      ValueType: bool
-      description: "Indicates if a temperature alarm is active. `true` indicates active, `false` indicates inactive."
-      hardware_support_register: auto
     Alarm:
-      name: "ALTERNATIVE: Alarm"
+      name: "Alarm"
       address: auto
       ValueType: bool[8]
       description: "Array of boolean values indicating which alarms are active. The array is ordered as follows: `Low Voltage`, `High Voltage`, `Low Cell Voltage`, `High Cell Voltage`, `Low SOC`, `High Charge Current`, `High Discharge Current`, `Temperatur`. `true` indicates active, `false` indicates inactive. Alams not supported by the hardware are always `false`."
+    Warning:
+      name: "Warning"
+      address: auto
+      ValueType: bool[8]
+      description: "Array of boolean values indicating which warnings are active. The array is ordered as follows: `Low Voltage`, `High Voltage`, `Low Cell Voltage`, `High Cell Voltage`, `Low SOC`, `High Charge Current`, `High Discharge Current`, `Temperatur`. `true` indicates active, `false` indicates inactive. Warnings not supported by the hardware are always `false`."
 
 cells:
   address: auto
