@@ -17,7 +17,6 @@ def generate_markdown(data, output_file):
         f.write("- [Register Allocation](#register-allocation)\n")
         f.write("- [Hardware Support Register](#hardware-support-register)\n")
         f.write("- [Fields](#fields)\n")
-        f.write("  - [General Registers](#general-registers)\n")
         f.write("  - [Cells](#cells)\n")
         f.write("\n")
         f.write("## Versioning\n\n")
