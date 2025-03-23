@@ -1,4 +1,4 @@
-# iRock Modbus Registers 2.0.0
+# iRock Modbus Registers 2.0.1
 
 All provided fields will be accessible in the Holding Registers. Each field can be split into multiple registers depending on its length. Fields that are not supported by all hardware will additionally write to a coil to indicate whether this function is supported.
 
@@ -14,7 +14,7 @@ All provided fields will be accessible in the Holding Registers. Each field can 
 
 ## Versioning
 
-This table version is "2.0.0". Future changes to the table will follow semantic versioning:
+This table version is "2.0.1". Future changes to the table will follow semantic versioning:
 
 - Patch version (0.0.x): Compatible changes, such as adding new fields or minor adjustments that do not affect existing registers.
 - Minor version (0.x.0): Changes that may alter values but keep the same position and length, such as updating default values or improving data types.
@@ -22,40 +22,46 @@ This table version is "2.0.0". Future changes to the table will follow semantic 
 
 ## Overview
 
-| |Register|Type|Hardware Supported Register|
+| |Register|Type|[Hardware Supported Register](#hardware-support-register)|
 |-|-|-|-|
-|Manufacturer ID|0|uint16|None|
-|Modbus Version|1|char[16]|None|
-|Hardware Name|9|char[16]|None|
-|Hardware Version|17|char[8]|None|
-|Serial Number|21|char[12]|None|
-|Software Version|27|char[16]|None|
-|Number of Cells|35|uint16|None|
-|Battery Voltage|36|float32|None|
-|Battery Current|38|float32|0|
-|SOC|40|float32|1|
-|Capacity|42|float32|None|
-|Remaining Capacity|44|float32|2|
-|Max Charge Current|46|float32|None|
-|Max Discharge Current|48|float32|None|
-|Max Cell Voltage|50|float32|None|
-|Min Cell Voltage|52|float32|None|
-|Temperature Sensor 1|54|float32|3|
-|Temperature Sensor 2|56|float32|4|
-|Temperature Sensor 3|58|float32|5|
-|Temperature Sensor 4|60|float32|6|
-|MOSFET Temperature|62|float32|7|
-|Feedback Shunt Current|64|float32|8|
-|Charge FET|66|bool|None|
-|Discharge FET|67|bool|None|
-|Alarm|68|bool[8]|None|
-|Warning|69|bool[8]|None|
-|Cell Voltage 1|70|float32|None|
-|Cell Balance Status 1|72|bool|None|
-|Cell Voltage 2|73|float32|None|
-|Cell Balance Status 2|75|bool|None|
-|Cell Voltage 3|76|float32|None|
-|Cell Balance Status 3|78|bool|None|
+|[Manufacturer ID](#manufacturer-id)|0|uint16|None|
+|[Modbus Version](#modbus-version)|1|char[16]|None|
+|[Hardware Name](#hardware-name)|9|char[16]|None|
+|[Hardware Version](#hardware-version)|17|char[8]|None|
+|[Serial Number](#serial-number)|21|char[12]|None|
+|[Software Version](#software-version)|27|char[16]|None|
+|[Number of Cells](#number-of-cells)|35|uint16|None|
+|[Battery Voltage](#battery-voltage)|36|float32|None|
+|[Battery Current](#battery-current)|38|float32|0|
+|[SOC](#soc)|40|float32|1|
+|[Capacity](#capacity)|42|float32|None|
+|[Remaining Capacity](#remaining-capacity)|44|float32|2|
+|[Max Charge Current](#max-charge-current)|46|float32|None|
+|[Max Discharge Current](#max-discharge-current)|48|float32|None|
+|[Max Cell Voltage](#max-cell-voltage)|50|float32|None|
+|[Min Cell Voltage](#min-cell-voltage)|52|float32|None|
+|[Temperature Sensor 1](#temperature-sensor-1)|54|float32|3|
+|[Temperature Sensor 2](#temperature-sensor-2)|56|float32|4|
+|[Temperature Sensor 3](#temperature-sensor-3)|58|float32|5|
+|[Temperature Sensor 4](#temperature-sensor-4)|60|float32|6|
+|[MOSFET Temperature](#mosfet-temperature)|62|float32|7|
+|[Feedback Shunt Current](#feedback-shunt-current)|64|float32|8|
+|[Charge FET](#charge-fet)|66|bool|None|
+|[Discharge FET](#discharge-fet)|67|bool|None|
+|[Low Voltage Alarm](#low-voltage-alarm)|68|uint8|None|
+|[High Voltage Alarm](#high-voltage-alarm)|69|uint8|None|
+|[Low Cell Voltage Alarm](#low-cell-voltage-alarm)|70|uint8|None|
+|[High Cell Voltage Alarm](#high-cell-voltage-alarm)|71|uint8|None|
+|[Low SOC Alarm](#low-soc-alarm)|72|uint8|None|
+|[High Charge Current Alarm](#high-charge-current-alarm)|73|uint8|None|
+|[High Discharge Current Alarm](#high-discharge-current-alarm)|74|uint8|None|
+|[Temperature Alarm](#temperature-alarm)|75|uint8|None|
+|[Cell Voltage 1](#cell-voltage-1)|76|float32|None|
+|[Cell Balance Status 1](#cell-balance-status-1)|78|bool|None|
+|[Cell Voltage 2](#cell-voltage-2)|79|float32|None|
+|[Cell Balance Status 2](#cell-balance-status-2)|81|bool|None|
+|[Cell Voltage 3](#cell-voltage-3)|82|float32|None|
+|[Cell Balance Status 3](#cell-balance-status-3)|84|bool|None|
 |...| | | |
 
 ## Supported Data Types
@@ -310,29 +316,77 @@ Boolean indicating if the charge FET is active. `true` indicates active, `false`
 
 Boolean indicating if the discharge FET is active. `true` indicates active, `false` indicates inactive.
 
-### Alarm
+### Low Voltage Alarm
 
 | Register | Type           | Size |
 |-|-|-|
-|68| `bool[8]` | 1 |
+|68| `uint8` | 1 |
 
-Array of boolean values indicating which alarms are active. The array is ordered as follows: `Low Voltage`, `High Voltage`, `Low Cell Voltage`, `High Cell Voltage`, `Low SOC`, `High Charge Current`, `High Discharge Current`, `Temperatur`. `true` indicates active, `false` indicates inactive. Alams not supported by the hardware are always `false`.
+Alarm Status for low battery voltage. No Alarm may be `0`, Warnings may be `1` and Alarms may be `2`.
 
-### Warning
+### High Voltage Alarm
 
 | Register | Type           | Size |
 |-|-|-|
-|69| `bool[8]` | 1 |
+|69| `uint8` | 1 |
 
-Array of boolean values indicating which warnings are active. The array is ordered as follows: `Low Voltage`, `High Voltage`, `Low Cell Voltage`, `High Cell Voltage`, `Low SOC`, `High Charge Current`, `High Discharge Current`, `Temperatur`. `true` indicates active, `false` indicates inactive. Warnings not supported by the hardware are always `false`.
+Alarm Status for high battery voltage. No Alarm may be `0`, Warnings may be `1` and Alarms may be `2`.
+
+### Low Cell Voltage Alarm
+
+| Register | Type           | Size |
+|-|-|-|
+|70| `uint8` | 1 |
+
+Alarm Status for low cell voltage. No Alarm may be `0`, Warnings may be `1` and Alarms may be `2`.
+
+### High Cell Voltage Alarm
+
+| Register | Type           | Size |
+|-|-|-|
+|71| `uint8` | 1 |
+
+Alarm Status for high cell voltage. No Alarm may be `0`, Warnings may be `1` and Alarms may be `2`.
+
+### Low SOC Alarm
+
+| Register | Type           | Size |
+|-|-|-|
+|72| `uint8` | 1 |
+
+Alarm Status for low SOC. No Alarm may be `0`, Warnings may be `1` and Alarms may be `2`.
+
+### High Charge Current Alarm
+
+| Register | Type           | Size |
+|-|-|-|
+|73| `uint8` | 1 |
+
+Alarm Status for high charge current. No Alarm may be `0`, Warnings may be `1` and Alarms may be `2`.
+
+### High Discharge Current Alarm
+
+| Register | Type           | Size |
+|-|-|-|
+|74| `uint8` | 1 |
+
+Alarm Status for high discharge current. No Alarm may be `0`, Warnings may be `1` and Alarms may be `2`.
+
+### Temperature Alarm
+
+| Register | Type           | Size |
+|-|-|-|
+|75| `uint8` | 1 |
+
+Alarm Status for high temperature. No Alarm may be `0`, Warnings may be `1` and Alarms may be `2`.
 
 ### Cells
 
-The cell fields repeat as many times as there are cells in the corresponding iRock. Cell numbering starts with 1. The starting address for cell 1 is 70, and the starting address for each subsequent cell is the next available free address. So a Cell Register is calculated as follows:
+The cell fields repeat as many times as there are cells in the corresponding iRock. Cell numbering starts with 1. The starting address for cell 1 is 76, and the starting address for each subsequent cell is the next available free address. So a Cell Register is calculated as follows:
 
 $$Starting Address + Offset + \left(Last Cell Offset + Last Cell Size\right) * \left( Cell Number -1 \right)$$
-$$=70 + Offset + \left(2 + 1\right) * \left( Cell Number -1 \right)$$
-$$=70 + Offset + 3 * \left( Cell Number -1 \right)$$
+$$=76 + Offset + \left(2 + 1\right) * \left( Cell Number -1 \right)$$
+$$=76 + Offset + 3 * \left( Cell Number -1 \right)$$
 
 #### Cell Voltage [V]
 
