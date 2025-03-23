@@ -43,6 +43,9 @@ def generate_markdown(data, output_file):
                     
         f.write("- **int32 / uint32**  \n")
         f.write("  32-bit signed and unsigned integers.  \n\n")
+                    
+        f.write("- **int64 / uint64**  \n")
+        f.write("  64-bit signed and unsigned integers.  \n\n")
         
         f.write("- **float32**  \n")
         f.write("  32-bit floating point number (commonly referred to as `float`).  \n\n")

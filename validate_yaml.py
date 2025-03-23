@@ -18,6 +18,8 @@ class BaseType(Enum):
     UINT16 = "uint16"
     INT32 = "int32"
     UINT32 = "uint32"
+    INT32 = "int64"
+    UINT32 = "uint64"
     FLOAT32 = "float32"
     FLOAT64 = "float64"
     BOOL = "bool"
@@ -44,6 +46,8 @@ class ValueType:
         BaseType.UINT16: 16,
         BaseType.INT32: 32,
         BaseType.UINT32: 32,
+        BaseType.INT64: 64,
+        BaseType.UINT64: 64,
         BaseType.FLOAT32: 32,
         BaseType.FLOAT64: 64,
         BaseType.BOOL: 1,
@@ -81,7 +85,7 @@ class ValueType:
             return f"{self.base_type.value}[{self.dimension}]"
     
     @classmethod
-    def from_str(cls, type_str: str) -> "ValueType":
+    def from_str(cls, type_str: str) -> Tuple[BaseType, int]:
         """
         Creates a ValueType instance from its string representation.
         
