@@ -146,17 +146,46 @@ general:
       address: auto
       ValueType: bool
       description: "Boolean indicating if the discharge FET is active. `true` indicates active, `false` indicates inactive."
-    Alarm:
-      name: "Alarm"
+    Low_Voltage_Alarm:
+      name: "Low Voltage Alarm"
       address: auto
-      ValueType: bool[8]
-      description: "Array of boolean values indicating which alarms are active. The array is ordered as follows: `Low Voltage`, `High Voltage`, `Low Cell Voltage`, `High Cell Voltage`, `Low SOC`, `High Charge Current`, `High Discharge Current`, `Temperatur`. `true` indicates active, `false` indicates inactive. Alams not supported by the hardware are always `false`."
-    Warning:
-      name: "Warning"
+      ValueType: uint8
+      description: "Alarm Status for low battery voltage. No Alarm may be `0`, Warnings may be `1` and Alarms may be `2`."
+    High_Voltage_Alarm:
+      name: "High Voltage Alarm"
       address: auto
-      ValueType: bool[8]
-      description: "Array of boolean values indicating which warnings are active. The array is ordered as follows: `Low Voltage`, `High Voltage`, `Low Cell Voltage`, `High Cell Voltage`, `Low SOC`, `High Charge Current`, `High Discharge Current`, `Temperatur`. `true` indicates active, `false` indicates inactive. Warnings not supported by the hardware are always `false`."
-
+      ValueType: uint8
+      description: "Alarm Status for high battery voltage. No Alarm may be `0`, Warnings may be `1` and Alarms may be `2`."
+    Low_Cell_Voltage_Alarm:
+      name: "Low Cell Voltage Alarm"
+      address: auto
+      ValueType: uint8
+      description: "Alarm Status for low cell voltage. No Alarm may be `0`, Warnings may be `1` and Alarms may be `2`."
+    High_Cell_Voltage_Alarm:
+      name: "High Cell Voltage Alarm"
+      address: auto
+      ValueType: uint8
+      description: "Alarm Status for high cell voltage. No Alarm may be `0`, Warnings may be `1` and Alarms may be `2`."
+    Low_SOC_Alarm:
+      name: "Low SOC Alarm"
+      address: auto
+      ValueType: uint8
+      description: "Alarm Status for low SOC. No Alarm may be `0`, Warnings may be `1` and Alarms may be `2`."
+    High_Charge_Current_Alarm:
+      name: "High Charge Current Alarm"
+      address: auto
+      ValueType: uint8
+      description: "Alarm Status for high charge current. No Alarm may be `0`, Warnings may be `1` and Alarms may be `2`."
+    High_Discharge_Current_Alarm:
+      name: "High Discharge Current Alarm"
+      address: auto
+      ValueType: uint8
+      description: "Alarm Status for high discharge current. No Alarm may be `0`, Warnings may be `1` and Alarms may be `2`."
+    Temperature_Alarm:
+      name: "Temperature Alarm"
+      address: auto
+      ValueType: uint8
+      description: "Alarm Status for high temperature. No Alarm may be `0`, Warnings may be `1` and Alarms may be `2`."
 cells:
   address: auto
   registers:
