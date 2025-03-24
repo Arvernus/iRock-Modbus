@@ -218,7 +218,7 @@ class RegisterList:
             }
         
         registers_dict = {
-            reg.name: register_details(reg) for reg in self.general_registers
+            reg.id: register_details(reg) for reg in self.general_registers
         }
         
         return {
@@ -244,7 +244,7 @@ class RegisterList:
             }
         
         registers_dict = {
-            reg.name: register_details(reg) for reg in self.cell_registers
+            reg.id: register_details(reg) for reg in self.cell_registers
         }
         
         return {
