@@ -210,7 +210,7 @@ class RegisterList:
                 "name": register.name,
                 "address": register.address,
                 "array_size": register.value_type.dimension,
-                "type": register.value_type.base_type,
+                "type": register.value_type.base_type.value,
                 "description": register.description,
                 "unit": register.unit,
                 "hardware_support_register": register.hardware_support_register
@@ -224,6 +224,7 @@ class RegisterList:
             "version": self.version,
             "register": registers_dict
         }
+
     def cell_register_to_dict(self) -> Dict[str, Union[Version, int, Dict[str, Any]]]:
         """
         Konvertiert die RegisterList in ein Dictionary-Format.
@@ -235,7 +236,7 @@ class RegisterList:
                 "name": register.name,
                 "offset": register.address,
                 "array_size": register.value_type.dimension,
-                "type": register.value_type.base_type,
+                "type": register.value_type.base_type.value,
                 "description": register.description,
                 "unit": register.unit,
                 "hardware_support_register": register.hardware_support_register
