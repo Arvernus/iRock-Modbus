@@ -165,11 +165,7 @@ class RegisterList:
             self.cell_start_address = address
             return Result.OK
         return Result.ERROR
-    def get_all_registers(self, number_of_cells: int = 2) -> List[Register]:
-        if self.cell_start_address is None:
-            self.cell_start_address = self.next_address()
-        all_registers = []
-        all_registers.extend(self.general_registers)
+    def get_cell_registers_size(self) -> int:
         last_cell_offset = 0
         last_cell_size = 0
         for reg in self.cell_registers:
@@ -177,6 +173,13 @@ class RegisterList:
                 last_cell_offset = reg.address
                 last_cell_size = reg.value_type.registers_required()
         total_size = last_cell_offset + last_cell_size
+        return total_size
+    def get_all_registers(self, number_of_cells: int = 2) -> List[Register]:
+        if self.cell_start_address is None:
+            self.cell_start_address = self.next_address()
+        all_registers = []
+        all_registers.extend(self.general_registers)
+        total_size = self.get_cell_registers_size()
         for i in range(1, number_of_cells + 1):
             for reg in self.cell_registers:
                 all_registers.append(Register(reg.name + f" {i}", reg.value_type, reg.address + self.cell_start_address + (i - 1) * total_size, reg.unit, reg.hardware_support_register))
@@ -196,18 +199,18 @@ class RegisterList:
                 print(f"Adressüberlappung: Coil '{prev.parent_address}' (Bereich {prev.address}) und Coil '{current.parent_address}' (Bereich {current.address})")
                 return Result.ERROR
         return Result.OK
-    def register_to_dict(self) -> Dict[Version, Union[str, Dict[str, Dict[str, Any]]]]:
+    def register_to_dict(self) -> Dict[str, Union[Version, Dict[str, Any]]]:
         """
         Konvertiert die RegisterList in ein Dictionary-Format.
         
         :return: Ein Dictionary mit den allgemeinen Registern und Zellregistern.
         """
-        def register_details(register: Register) -> Dict[str, Union[Any]]:
+        def register_details(register: Register) -> Dict[str, Any]:
             return {
                 "name": register.name,
                 "address": register.address,
                 "array_size": register.value_type.dimension,
-                "type": register.value_type.base_type.name,
+                "type": register.value_type.base_type,
                 "description": register.description,
                 "unit": register.unit,
                 "hardware_support_register": register.hardware_support_register
@@ -219,6 +222,33 @@ class RegisterList:
         
         return {
             "version": self.version,
+            "register": registers_dict
+        }
+    def cell_register_to_dict(self) -> Dict[str, Union[Version, int, Dict[str, Any]]]:
+        """
+        Konvertiert die RegisterList in ein Dictionary-Format.
+        
+        :return: Ein Dictionary mit den allgemeinen Registern und Zellregistern.
+        """
+        def register_details(register: Register) -> Dict[str, Union[Any]]:
+            return {
+                "name": register.name,
+                "offset": register.address,
+                "array_size": register.value_type.dimension,
+                "type": register.value_type.base_type,
+                "description": register.description,
+                "unit": register.unit,
+                "hardware_support_register": register.hardware_support_register
+            }
+        
+        registers_dict = {
+            reg.name: register_details(reg) for reg in self.cell_registers
+        }
+        
+        return {
+            "version": self.version,
+            "offset": self.cell_start_address,
+            "length": self.get_cell_registers_size(),
             "register": registers_dict
         }
 
