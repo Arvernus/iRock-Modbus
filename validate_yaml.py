@@ -210,7 +210,7 @@ class RegisterList:
                 "name": register.name,
                 "address": register.address,
                 "array_size": register.value_type.dimension,
-                "type": register.value_type.base_type.value,
+                "type": register.value_type.base_type.name,
                 "description": register.description,
                 "unit": register.unit,
                 "hardware_support_register": register.hardware_support_register
@@ -236,7 +236,7 @@ class RegisterList:
                 "name": register.name,
                 "offset": register.address,
                 "array_size": register.value_type.dimension,
-                "type": register.value_type.base_type.value,
+                "type": register.value_type.base_type.name,
                 "description": register.description,
                 "unit": register.unit,
                 "hardware_support_register": register.hardware_support_register
