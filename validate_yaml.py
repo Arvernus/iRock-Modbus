@@ -4,6 +4,7 @@ import yaml
 import re
 import jsonschema
 import math
+from semantic_version import Version
 from enum import Enum
 from typing import Union, Dict, List, Tuple
 
@@ -122,7 +123,7 @@ class RegisterList:
         self.cell_registers: List[Register] = []
         self.coils: List[Coil] = []
         self.cell_start_address: int = None
-        self.version: str = None
+        self.version: Version = None
     def add_register(self, name: str, value_type: ValueType, address: Union[str, int] = None, unit: str = None, hardware_support_register: Union[str, int] = None, description: str = "") -> Result:
         if address == "auto":
             address = self.next_address()
