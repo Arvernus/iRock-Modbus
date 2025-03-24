@@ -6,7 +6,7 @@ import jsonschema
 import math
 from semantic_version import Version
 from enum import Enum
-from typing import Union, Dict, List, Tuple
+from typing import Union, Dict, List, Tuple, Any
 
 class Result(Enum):
     OK = "OK"
@@ -196,19 +196,21 @@ class RegisterList:
                 print(f"Adressüberlappung: Coil '{prev.parent_address}' (Bereich {prev.address}) und Coil '{current.parent_address}' (Bereich {current.address})")
                 return Result.ERROR
         return Result.OK
-    def register_to_dict(self) -> Dict[str, Union[str, Dict[str, Dict[str, Union[str, int]]]]]:
+    def register_to_dict(self) -> Dict[Version, Union[str, Dict[str, Dict[str, Any]]]]:
         """
         Konvertiert die RegisterList in ein Dictionary-Format.
         
         :return: Ein Dictionary mit den allgemeinen Registern und Zellregistern.
         """
-        def register_details(register: Register) -> Dict[str, Union[str, int]]:
+        def register_details(register: Register) -> Dict[str, Union[Any]]:
             return {
                 "name": register.name,
                 "address": register.address,
                 "array_size": register.value_type.dimension,
                 "type": register.value_type.base_type.value,
-                "description": register.description
+                "description": register.description,
+                "unit": register.unit,
+                "hardware_support_register": register.hardware_support_register
             }
         
         registers_dict = {
