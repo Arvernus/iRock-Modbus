@@ -1,4 +1,4 @@
-# iRock Modbus Registers 2.0.0
+# iRock Modbus Registers 2.0.1
 
 All provided fields will be accessible in the Holding Registers. Each field can be split into multiple registers depending on its length. Fields that are not supported by all hardware will additionally write to a coil to indicate whether this function is supported.
 
@@ -14,7 +14,7 @@ All provided fields will be accessible in the Holding Registers. Each field can 
 
 ## Versioning
 
-This table version is "2.0.0". Future changes to the table will follow semantic versioning:
+This table version is "2.0.1". Future changes to the table will follow semantic versioning:
 
 - Patch version (0.0.x): Compatible changes, such as adding new fields or minor adjustments that do not affect existing registers.
 - Minor version (0.x.0): Changes that may alter values but keep the same position and length, such as updating default values or improving data types.
