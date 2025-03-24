@@ -106,7 +106,8 @@ class ValueType:
         dimension = int(dimension_str) if dimension_str else 1
         return cls(BaseType(base_type_str), dimension)
 class Register:
-    def __init__(self, name: str, value_type: ValueType, address: int, unit: str = None, hardware_support_register: int = None, description: str = ""):
+    def __init__(self, id:str, name: str, value_type: ValueType, address: int, unit: str = None, hardware_support_register: int = None, description: str = ""):
+        self.id: str = id
         self.name: str = name
         self.address: int = address
         self.value_type: ValueType = value_type
@@ -124,12 +125,12 @@ class RegisterList:
         self.coils: List[Coil] = []
         self.cell_start_address: int = None
         self.version: Version = None
-    def add_register(self, name: str, value_type: ValueType, address: Union[str, int] = None, unit: str = None, hardware_support_register: Union[str, int] = None, description: str = "") -> Result:
+    def add_register(self, id:str, name: str, value_type: ValueType, address: Union[str, int] = None, unit: str = None, hardware_support_register: Union[str, int] = None, description: str = "") -> Result:
         if address == "auto":
             address = self.next_address()
         if hardware_support_register == "auto":
             hardware_support_register = self.next_coil()
-        self.general_registers.append(Register(name, value_type, address, unit, hardware_support_register, description))
+        self.general_registers.append(Register(id, name, value_type, address, unit, hardware_support_register, description))
         self.general_registers.sort(key=lambda x: x.address)
         if hardware_support_register is not None:
             self.coils.append(Coil(address, hardware_support_register))
@@ -147,12 +148,12 @@ class RegisterList:
         if self.cell_registers:
             return self.cell_registers[-1].address + self.cell_registers[-1].value_type.registers_required()
         return 0
-    def add_cell_registers(self, name: str, value_type: ValueType, offset: Union[str, int], unit: str = None, hardware_support_register: int = None, description: str = "") -> Result:
+    def add_cell_registers(self, id: str, name: str, value_type: ValueType, offset: Union[str, int], unit: str = None, hardware_support_register: int = None, description: str = "") -> Result:
         if offset == "auto":
             offset = self.next_cell_address()
         if hardware_support_register == "auto":
             hardware_support_register = self.next_coil()
-        self.cell_registers.append(Register(name, value_type, offset, unit, hardware_support_register, description))
+        self.cell_registers.append(Register(id, name, value_type, offset, unit, hardware_support_register, description))
         self.cell_registers.sort(key=lambda x: x.address)
         if hardware_support_register is not None:
             self.coils.append(Coil(offset, hardware_support_register))
@@ -182,7 +183,7 @@ class RegisterList:
         total_size = self.get_cell_registers_size()
         for i in range(1, number_of_cells + 1):
             for reg in self.cell_registers:
-                all_registers.append(Register(reg.name + f" {i}", reg.value_type, reg.address + self.cell_start_address + (i - 1) * total_size, reg.unit, reg.hardware_support_register))
+                all_registers.append(Register(reg.id + f"_{i}", reg.name + f" {i}", reg.value_type, reg.address + self.cell_start_address + (i - 1) * total_size, reg.unit, reg.hardware_support_register))
         return all_registers
     def validate_address_overlaps(self, number_of_cells: int = 49) -> Result:
         test_registers = self.get_all_registers(number_of_cells)
@@ -278,25 +279,27 @@ def generate_registers(data) -> RegisterList:
     general_regs = data.get("general", {}).get("registers", {})
     next_coil = 0
     for key, reg in general_regs.items():
+        id: str = key
         name: str = reg.get("name", key)
         addr = reg.get("address", "auto")
         vt: ValueType = ValueType.from_str(reg.get("ValueType"))
         unit: str = reg.get("unit")
         coil = reg.get("hardware_support_register")
         description: str = reg.get("description", "")
-        registers.add_register(name, vt, addr, unit, coil, description)
+        registers.add_register(id, name, vt, addr, unit, coil, description)
 
     # Zellen-Register
     cells_regs = data.get("cells", {}).get("registers", {})
     registers.set_cell_start_address(data.get("cells", {}).get("address", "auto"))
     for key, reg in cells_regs.items():
+        id = key
         name: str = reg.get("name", key)
         offset = reg.get("offset", "auto")
         vt: ValueType = ValueType.from_str(reg.get("ValueType"))
         unit: str = reg.get("unit")
         coil = reg.get("hardware_support_register")
         description: str = reg.get("description", "")
-        registers.add_cell_registers(name, vt, offset, unit, coil, description)
+        registers.add_cell_registers(id, name, vt, offset, unit, coil, description)
     return registers
 
 def main():
