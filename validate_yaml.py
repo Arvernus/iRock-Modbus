@@ -194,6 +194,28 @@ class RegisterList:
                 print(f"Adressüberlappung: Coil '{prev.parent_address}' (Bereich {prev.address}) und Coil '{current.parent_address}' (Bereich {current.address})")
                 return Result.ERROR
         return Result.OK
+    def to_dict(self) -> Dict[str, List[Dict[str, Union[str, int]]]]:
+        """
+        Konvertiert die RegisterList in ein Dictionary-Format.
+        
+        :return: Ein Dictionary mit den allgemeinen Registern und Zellregistern.
+        """
+        def register_to_dict(register: Register) -> Dict[str, Union[str, int]]:
+            return {
+                "name": register.name,
+                "address": register.address,
+                "value_type": str(register.value_type),
+                "unit": register.unit,
+                "hardware_support_register": register.hardware_support_register,
+                "description": register.description
+            }
+        
+        return {
+            "general_registers": [register_to_dict(reg) for reg in self.general_registers],
+            "cell_registers": [register_to_dict(reg) for reg in self.cell_registers],
+            "coils": [{"parent_address": coil.parent_address, "address": coil.address} for coil in self.coils],
+            "cell_start_address": self.cell_start_address
+        }
 
 def load_yaml(filepath):
     with open(filepath, 'r', encoding='utf-8') as f:
