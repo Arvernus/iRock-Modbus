@@ -122,6 +122,7 @@ class RegisterList:
         self.cell_registers: List[Register] = []
         self.coils: List[Coil] = []
         self.cell_start_address: int = None
+        self.version: str = None
     def add_register(self, name: str, value_type: ValueType, address: Union[str, int] = None, unit: str = None, hardware_support_register: Union[str, int] = None, description: str = "") -> Result:
         if address == "auto":
             address = self.next_address()
@@ -214,7 +215,7 @@ class RegisterList:
         }
         
         return {
-            "version": "1.0.0",
+            "version": self.version,
             "register": registers_dict
         }
 
@@ -237,6 +238,7 @@ def generate_registers(data) -> RegisterList:
     jeweils als (Name, Startadresse, Endadresse), und sortiert diese.
     """
     registers = RegisterList()
+    registers.version = data.get("version")
 
     # Allgemeine Register
     general_regs = data.get("general", {}).get("registers", {})
