@@ -205,8 +205,8 @@ class RegisterList:
             return {
                 "name": register.name,
                 "address": register.address,
-                "length": register.value_type.registers_required(),
-                "type": str(register.value_type),
+                "array_size": register.value_type.dimension,
+                "type": register.value_type.base_type.value,
                 "description": register.description
             }
         
