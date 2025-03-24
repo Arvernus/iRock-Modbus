@@ -207,7 +207,7 @@ class RegisterList:
                 "name": register.name,
                 "address": register.address,
                 "array_size": register.value_type.dimension,
-                "type": register.value_type.base_type,
+                "type": register.value_type.base_type.name,
                 "description": register.description,
                 "unit": register.unit,
                 "hardware_support_register": register.hardware_support_register
