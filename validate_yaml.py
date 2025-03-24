@@ -239,7 +239,7 @@ def generate_registers(data) -> RegisterList:
     jeweils als (Name, Startadresse, Endadresse), und sortiert diese.
     """
     registers = RegisterList()
-    registers.version = data.get("version")
+    registers.version = Version(data.get("version"))
 
     # Allgemeine Register
     general_regs = data.get("general", {}).get("registers", {})
