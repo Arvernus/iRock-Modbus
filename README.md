@@ -302,7 +302,7 @@ iRock may set coil 7 to true if function is supported.
 |-|-|-|
 |66| `float32` | 2 |
 
-Current flowing through the feedback shunt. The feedback shunt messures the current of all ballancers in sum.
+Current flowing through the feedback shunt. The feedback shunt measures the current of all balancers in sum.
 iRock may set coil 8 to true if function is supported.
 
 ### Charge FET
