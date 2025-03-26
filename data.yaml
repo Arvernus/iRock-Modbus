@@ -20,8 +20,8 @@ general:
     Hardware_Version:
       name: "Hardware Version"
       address: auto
-      ValueType: char[8]
-      description: "Version identifier of the hardware, as a string in float format."
+      ValueType: char[16]
+      description: "Version identifier of the hardware, as a string in semantic versioning format."
     Serial_Number:
       name: "Serial Number"
       address: auto
