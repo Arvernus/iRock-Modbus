@@ -50,14 +50,14 @@ This table version is "2.0.0". Future changes to the table will follow semantic 
 |[Discharge FET](#discharge-fet)|69|bool|10|
 |[Allow Charge](#allow-charge)|70|bool|11|
 |[Allow Discharge](#allow-discharge)|71|bool|12|
-|[Low Voltage Alarm](#low-voltage-alarm)|72|uint8|None|
-|[High Voltage Alarm](#high-voltage-alarm)|73|uint8|None|
-|[Low Cell Voltage Alarm](#low-cell-voltage-alarm)|74|uint8|None|
-|[High Cell Voltage Alarm](#high-cell-voltage-alarm)|75|uint8|None|
-|[Low SOC Alarm](#low-soc-alarm)|76|uint8|13|
-|[High Charge Current Alarm](#high-charge-current-alarm)|77|uint8|14|
-|[High Discharge Current Alarm](#high-discharge-current-alarm)|78|uint8|15|
-|[Temperature Alarm](#temperature-alarm)|79|uint8|16|
+|[Low Voltage Alarm](#low-voltage-alarm)|72|uint16|None|
+|[High Voltage Alarm](#high-voltage-alarm)|73|uint16|None|
+|[Low Cell Voltage Alarm](#low-cell-voltage-alarm)|74|uint16|None|
+|[High Cell Voltage Alarm](#high-cell-voltage-alarm)|75|uint16|None|
+|[Low SOC Alarm](#low-soc-alarm)|76|uint16|13|
+|[High Charge Current Alarm](#high-charge-current-alarm)|77|uint16|14|
+|[High Discharge Current Alarm](#high-discharge-current-alarm)|78|uint16|15|
+|[Temperature Alarm](#temperature-alarm)|79|uint16|16|
 |[Cell Voltage 1](#cell-voltage-1)|80|float32|None|
 |[Cell Balance Status 1](#cell-balance-status-1)|82|bool|None|
 |[Cell Voltage 2](#cell-voltage-2)|83|float32|None|
@@ -345,7 +345,7 @@ iRock may set coil 12 to true if function is supported.
 
 | Register | Type           | Size |
 |-|-|-|
-|72| `uint8` | 1 |
+|72| `uint16` | 1 |
 
 Alarm Status for low battery voltage. No Alarm may be `0`, Warnings may be `1` and Alarms may be `2`.
 
@@ -353,7 +353,7 @@ Alarm Status for low battery voltage. No Alarm may be `0`, Warnings may be `1` a
 
 | Register | Type           | Size |
 |-|-|-|
-|73| `uint8` | 1 |
+|73| `uint16` | 1 |
 
 Alarm Status for high battery voltage. No Alarm may be `0`, Warnings may be `1` and Alarms may be `2`.
 
@@ -361,7 +361,7 @@ Alarm Status for high battery voltage. No Alarm may be `0`, Warnings may be `1` 
 
 | Register | Type           | Size |
 |-|-|-|
-|74| `uint8` | 1 |
+|74| `uint16` | 1 |
 
 Alarm Status for low cell voltage. No Alarm may be `0`, Warnings may be `1` and Alarms may be `2`.
 
@@ -369,7 +369,7 @@ Alarm Status for low cell voltage. No Alarm may be `0`, Warnings may be `1` and 
 
 | Register | Type           | Size |
 |-|-|-|
-|75| `uint8` | 1 |
+|75| `uint16` | 1 |
 
 Alarm Status for high cell voltage. No Alarm may be `0`, Warnings may be `1` and Alarms may be `2`.
 
@@ -377,7 +377,7 @@ Alarm Status for high cell voltage. No Alarm may be `0`, Warnings may be `1` and
 
 | Register | Type           | Size |
 |-|-|-|
-|76| `uint8` | 1 |
+|76| `uint16` | 1 |
 
 Alarm Status for low SOC. No Alarm may be `0`, Warnings may be `1` and Alarms may be `2`.
 iRock may set coil 13 to true if function is supported.
@@ -386,7 +386,7 @@ iRock may set coil 13 to true if function is supported.
 
 | Register | Type           | Size |
 |-|-|-|
-|77| `uint8` | 1 |
+|77| `uint16` | 1 |
 
 Alarm Status for high charge current. No Alarm may be `0`, Warnings may be `1` and Alarms may be `2`.
 iRock may set coil 14 to true if function is supported.
@@ -395,7 +395,7 @@ iRock may set coil 14 to true if function is supported.
 
 | Register | Type           | Size |
 |-|-|-|
-|78| `uint8` | 1 |
+|78| `uint16` | 1 |
 
 Alarm Status for high discharge current. No Alarm may be `0`, Warnings may be `1` and Alarms may be `2`.
 iRock may set coil 15 to true if function is supported.
@@ -404,7 +404,7 @@ iRock may set coil 15 to true if function is supported.
 
 | Register | Type           | Size |
 |-|-|-|
-|79| `uint8` | 1 |
+|79| `uint16` | 1 |
 
 Alarm Status for high temperature. No Alarm may be `0`, Warnings may be `1` and Alarms may be `2`.
 iRock may set coil 16 to true if function is supported.
