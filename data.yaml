@@ -25,7 +25,7 @@ general:
     Serial_Number:
       name: "Serial Number"
       address: auto
-      ValueType: char[12]
+      ValueType: char[8]
       description: "Unique serial number of the iRock control board."
     SW_Version:
       name: "Software Version"
