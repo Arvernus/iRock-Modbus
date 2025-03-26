@@ -7,4 +7,5 @@ jsonschema-specifications==2024.10.1
 PyYAML==6.0.2
 referencing==0.36.2
 rpds-py==0.23.1
+semantic-version==2.10.0
 yamale==6.0.0
