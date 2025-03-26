@@ -27,43 +27,43 @@ This table version is "2.0.0". Future changes to the table will follow semantic 
 |[Manufacturer ID](#manufacturer-id)|0|uint16|None|
 |[Modbus Version](#modbus-version)|1|char[16]|None|
 |[Hardware Name](#hardware-name)|9|char[16]|None|
-|[Hardware Version](#hardware-version)|17|char[8]|None|
-|[Serial Number](#serial-number)|21|char[12]|None|
-|[Software Version](#software-version)|27|char[16]|None|
-|[Number of Cells](#number-of-cells)|35|uint16|None|
-|[Battery Voltage](#battery-voltage)|36|float32|None|
-|[Battery Current](#battery-current)|38|float32|0|
-|[SOC](#soc)|40|float32|1|
-|[Capacity](#capacity)|42|float32|None|
-|[Remaining Capacity](#remaining-capacity)|44|float32|2|
-|[Max Charge Current](#max-charge-current)|46|float32|None|
-|[Max Discharge Current](#max-discharge-current)|48|float32|None|
-|[Max Cell Voltage](#max-cell-voltage)|50|float32|None|
-|[Min Cell Voltage](#min-cell-voltage)|52|float32|None|
-|[Temperature Sensor 1](#temperature-sensor-1)|54|float32|3|
-|[Temperature Sensor 2](#temperature-sensor-2)|56|float32|4|
-|[Temperature Sensor 3](#temperature-sensor-3)|58|float32|5|
-|[Temperature Sensor 4](#temperature-sensor-4)|60|float32|6|
-|[MOSFET Temperature](#mosfet-temperature)|62|float32|7|
-|[Feedback Shunt Current](#feedback-shunt-current)|64|float32|8|
-|[Charge FET](#charge-fet)|66|bool|9|
-|[Discharge FET](#discharge-fet)|67|bool|10|
-|[Allow Charge](#allow-charge)|68|bool|11|
-|[Allow Discharge](#allow-discharge)|69|bool|12|
-|[Low Voltage Alarm](#low-voltage-alarm)|70|uint8|None|
-|[High Voltage Alarm](#high-voltage-alarm)|71|uint8|None|
-|[Low Cell Voltage Alarm](#low-cell-voltage-alarm)|72|uint8|None|
-|[High Cell Voltage Alarm](#high-cell-voltage-alarm)|73|uint8|None|
-|[Low SOC Alarm](#low-soc-alarm)|74|uint8|13|
-|[High Charge Current Alarm](#high-charge-current-alarm)|75|uint8|14|
-|[High Discharge Current Alarm](#high-discharge-current-alarm)|76|uint8|15|
-|[Temperature Alarm](#temperature-alarm)|77|uint8|16|
-|[Cell Voltage 1](#cell-voltage-1)|78|float32|None|
-|[Cell Balance Status 1](#cell-balance-status-1)|80|bool|None|
-|[Cell Voltage 2](#cell-voltage-2)|81|float32|None|
-|[Cell Balance Status 2](#cell-balance-status-2)|83|bool|None|
-|[Cell Voltage 3](#cell-voltage-3)|84|float32|None|
-|[Cell Balance Status 3](#cell-balance-status-3)|86|bool|None|
+|[Hardware Version](#hardware-version)|17|char[16]|None|
+|[Serial Number](#serial-number)|25|char[12]|None|
+|[Software Version](#software-version)|31|char[16]|None|
+|[Number of Cells](#number-of-cells)|39|uint16|None|
+|[Battery Voltage](#battery-voltage)|40|float32|None|
+|[Battery Current](#battery-current)|42|float32|0|
+|[SOC](#soc)|44|float32|1|
+|[Capacity](#capacity)|46|float32|None|
+|[Remaining Capacity](#remaining-capacity)|48|float32|2|
+|[Max Charge Current](#max-charge-current)|50|float32|None|
+|[Max Discharge Current](#max-discharge-current)|52|float32|None|
+|[Max Cell Voltage](#max-cell-voltage)|54|float32|None|
+|[Min Cell Voltage](#min-cell-voltage)|56|float32|None|
+|[Temperature Sensor 1](#temperature-sensor-1)|58|float32|3|
+|[Temperature Sensor 2](#temperature-sensor-2)|60|float32|4|
+|[Temperature Sensor 3](#temperature-sensor-3)|62|float32|5|
+|[Temperature Sensor 4](#temperature-sensor-4)|64|float32|6|
+|[MOSFET Temperature](#mosfet-temperature)|66|float32|7|
+|[Feedback Shunt Current](#feedback-shunt-current)|68|float32|8|
+|[Charge FET](#charge-fet)|70|bool|9|
+|[Discharge FET](#discharge-fet)|71|bool|10|
+|[Allow Charge](#allow-charge)|72|bool|11|
+|[Allow Discharge](#allow-discharge)|73|bool|12|
+|[Low Voltage Alarm](#low-voltage-alarm)|74|uint8|None|
+|[High Voltage Alarm](#high-voltage-alarm)|75|uint8|None|
+|[Low Cell Voltage Alarm](#low-cell-voltage-alarm)|76|uint8|None|
+|[High Cell Voltage Alarm](#high-cell-voltage-alarm)|77|uint8|None|
+|[Low SOC Alarm](#low-soc-alarm)|78|uint8|13|
+|[High Charge Current Alarm](#high-charge-current-alarm)|79|uint8|14|
+|[High Discharge Current Alarm](#high-discharge-current-alarm)|80|uint8|15|
+|[Temperature Alarm](#temperature-alarm)|81|uint8|16|
+|[Cell Voltage 1](#cell-voltage-1)|82|float32|None|
+|[Cell Balance Status 1](#cell-balance-status-1)|84|bool|None|
+|[Cell Voltage 2](#cell-voltage-2)|85|float32|None|
+|[Cell Balance Status 2](#cell-balance-status-2)|87|bool|None|
+|[Cell Voltage 3](#cell-voltage-3)|88|float32|None|
+|[Cell Balance Status 3](#cell-balance-status-3)|90|bool|None|
 |...| | | |
 
 ## Supported Data Types
@@ -148,15 +148,15 @@ Name of the iRock hardware. Options include: `iRock 200`, `iRock 300`, `iRock 40
 
 | Register | Type           | Size |
 |-|-|-|
-|17| `char[8]` | 4 |
+|17| `char[16]` | 8 |
 
-Version identifier of the hardware, as a string in float format.
+Version identifier of the hardware, as a string in semantic versioning format.
 
 ### Serial Number
 
 | Register | Type           | Size |
 |-|-|-|
-|21| `char[12]` | 6 |
+|25| `char[12]` | 6 |
 
 Unique serial number of the iRock control board.
 
@@ -164,7 +164,7 @@ Unique serial number of the iRock control board.
 
 | Register | Type           | Size |
 |-|-|-|
-|27| `char[16]` | 8 |
+|31| `char[16]` | 8 |
 
 Software version currently installed, as a string in semantic versioning format.
 
@@ -172,7 +172,7 @@ Software version currently installed, as a string in semantic versioning format.
 
 | Register | Type           | Size |
 |-|-|-|
-|35| `uint16` | 1 |
+|39| `uint16` | 1 |
 
 Number of battery cells in the system. May be any number between 2 and 24.
 
@@ -180,7 +180,7 @@ Number of battery cells in the system. May be any number between 2 and 24.
 
 | Register | Type           | Size |
 |-|-|-|
-|36| `float32` | 2 |
+|40| `float32` | 2 |
 
 Total voltage of the battery pack.
 
@@ -188,7 +188,7 @@ Total voltage of the battery pack.
 
 | Register | Type           | Size |
 |-|-|-|
-|38| `float32` | 2 |
+|42| `float32` | 2 |
 
 Current flowing in or out of the battery. Positive values indicate charging, negative values indicate discharging.
 iRock may set coil 0 to true if function is supported.
@@ -197,7 +197,7 @@ iRock may set coil 0 to true if function is supported.
 
 | Register | Type           | Size |
 |-|-|-|
-|40| `float32` | 2 |
+|44| `float32` | 2 |
 
 State of Charge (SOC) of the battery.
 iRock may set coil 1 to true if function is supported.
@@ -206,7 +206,7 @@ iRock may set coil 1 to true if function is supported.
 
 | Register | Type           | Size |
 |-|-|-|
-|42| `float32` | 2 |
+|46| `float32` | 2 |
 
 Total capacity of the battery pack.
 
@@ -214,7 +214,7 @@ Total capacity of the battery pack.
 
 | Register | Type           | Size |
 |-|-|-|
-|44| `float32` | 2 |
+|48| `float32` | 2 |
 
 Remaining available capacity in the battery pack.
 iRock may set coil 2 to true if function is supported.
@@ -223,7 +223,7 @@ iRock may set coil 2 to true if function is supported.
 
 | Register | Type           | Size |
 |-|-|-|
-|46| `float32` | 2 |
+|50| `float32` | 2 |
 
 Maximum current the battery can accept.
 
@@ -231,7 +231,7 @@ Maximum current the battery can accept.
 
 | Register | Type           | Size |
 |-|-|-|
-|48| `float32` | 2 |
+|52| `float32` | 2 |
 
 Maximum current the battery can deliver.
 
@@ -239,7 +239,7 @@ Maximum current the battery can deliver.
 
 | Register | Type           | Size |
 |-|-|-|
-|50| `float32` | 2 |
+|54| `float32` | 2 |
 
 Maximum voltage recorded for any single cell.
 
@@ -247,7 +247,7 @@ Maximum voltage recorded for any single cell.
 
 | Register | Type           | Size |
 |-|-|-|
-|52| `float32` | 2 |
+|56| `float32` | 2 |
 
 Minimum voltage recorded for any single cell.
 
@@ -255,7 +255,7 @@ Minimum voltage recorded for any single cell.
 
 | Register | Type           | Size |
 |-|-|-|
-|54| `float32` | 2 |
+|58| `float32` | 2 |
 
 Temperature reading from sensor 1.
 iRock may set coil 3 to true if function is supported.
@@ -264,7 +264,7 @@ iRock may set coil 3 to true if function is supported.
 
 | Register | Type           | Size |
 |-|-|-|
-|56| `float32` | 2 |
+|60| `float32` | 2 |
 
 Temperature reading from sensor 2.
 iRock may set coil 4 to true if function is supported.
@@ -273,7 +273,7 @@ iRock may set coil 4 to true if function is supported.
 
 | Register | Type           | Size |
 |-|-|-|
-|58| `float32` | 2 |
+|62| `float32` | 2 |
 
 Temperature reading from sensor 3.
 iRock may set coil 5 to true if function is supported.
@@ -282,7 +282,7 @@ iRock may set coil 5 to true if function is supported.
 
 | Register | Type           | Size |
 |-|-|-|
-|60| `float32` | 2 |
+|64| `float32` | 2 |
 
 Temperature reading from sensor 4.
 iRock may set coil 6 to true if function is supported.
@@ -291,7 +291,7 @@ iRock may set coil 6 to true if function is supported.
 
 | Register | Type           | Size |
 |-|-|-|
-|62| `float32` | 2 |
+|66| `float32` | 2 |
 
 MOSFET temperature sensor reading.
 iRock may set coil 7 to true if function is supported.
@@ -300,7 +300,7 @@ iRock may set coil 7 to true if function is supported.
 
 | Register | Type           | Size |
 |-|-|-|
-|64| `float32` | 2 |
+|68| `float32` | 2 |
 
 Current flowing through the feedback shunt. The feedback shunt messures the current of all ballancers in sum.
 iRock may set coil 8 to true if function is supported.
@@ -309,7 +309,7 @@ iRock may set coil 8 to true if function is supported.
 
 | Register | Type           | Size |
 |-|-|-|
-|66| `bool` | 1 |
+|70| `bool` | 1 |
 
 Boolean indicating if the charge FET is active. `true` indicates active, `false` indicates inactive.
 iRock may set coil 9 to true if function is supported.
@@ -318,7 +318,7 @@ iRock may set coil 9 to true if function is supported.
 
 | Register | Type           | Size |
 |-|-|-|
-|67| `bool` | 1 |
+|71| `bool` | 1 |
 
 Boolean indicating if the discharge FET is active. `true` indicates active, `false` indicates inactive.
 iRock may set coil 10 to true if function is supported.
@@ -327,7 +327,7 @@ iRock may set coil 10 to true if function is supported.
 
 | Register | Type           | Size |
 |-|-|-|
-|68| `bool` | 1 |
+|72| `bool` | 1 |
 
 Boolean indicating if charging is allowed. `true` indicates allowed, `false` indicates disallowed.
 iRock may set coil 11 to true if function is supported.
@@ -336,7 +336,7 @@ iRock may set coil 11 to true if function is supported.
 
 | Register | Type           | Size |
 |-|-|-|
-|69| `bool` | 1 |
+|73| `bool` | 1 |
 
 Boolean indicating if discharging is allowed. `true` indicates allowed, `false` indicates disallowed.
 iRock may set coil 12 to true if function is supported.
@@ -345,7 +345,7 @@ iRock may set coil 12 to true if function is supported.
 
 | Register | Type           | Size |
 |-|-|-|
-|70| `uint8` | 1 |
+|74| `uint8` | 1 |
 
 Alarm Status for low battery voltage. No Alarm may be `0`, Warnings may be `1` and Alarms may be `2`.
 
@@ -353,7 +353,7 @@ Alarm Status for low battery voltage. No Alarm may be `0`, Warnings may be `1` a
 
 | Register | Type           | Size |
 |-|-|-|
-|71| `uint8` | 1 |
+|75| `uint8` | 1 |
 
 Alarm Status for high battery voltage. No Alarm may be `0`, Warnings may be `1` and Alarms may be `2`.
 
@@ -361,7 +361,7 @@ Alarm Status for high battery voltage. No Alarm may be `0`, Warnings may be `1` 
 
 | Register | Type           | Size |
 |-|-|-|
-|72| `uint8` | 1 |
+|76| `uint8` | 1 |
 
 Alarm Status for low cell voltage. No Alarm may be `0`, Warnings may be `1` and Alarms may be `2`.
 
@@ -369,7 +369,7 @@ Alarm Status for low cell voltage. No Alarm may be `0`, Warnings may be `1` and 
 
 | Register | Type           | Size |
 |-|-|-|
-|73| `uint8` | 1 |
+|77| `uint8` | 1 |
 
 Alarm Status for high cell voltage. No Alarm may be `0`, Warnings may be `1` and Alarms may be `2`.
 
@@ -377,7 +377,7 @@ Alarm Status for high cell voltage. No Alarm may be `0`, Warnings may be `1` and
 
 | Register | Type           | Size |
 |-|-|-|
-|74| `uint8` | 1 |
+|78| `uint8` | 1 |
 
 Alarm Status for low SOC. No Alarm may be `0`, Warnings may be `1` and Alarms may be `2`.
 iRock may set coil 13 to true if function is supported.
@@ -386,7 +386,7 @@ iRock may set coil 13 to true if function is supported.
 
 | Register | Type           | Size |
 |-|-|-|
-|75| `uint8` | 1 |
+|79| `uint8` | 1 |
 
 Alarm Status for high charge current. No Alarm may be `0`, Warnings may be `1` and Alarms may be `2`.
 iRock may set coil 14 to true if function is supported.
@@ -395,7 +395,7 @@ iRock may set coil 14 to true if function is supported.
 
 | Register | Type           | Size |
 |-|-|-|
-|76| `uint8` | 1 |
+|80| `uint8` | 1 |
 
 Alarm Status for high discharge current. No Alarm may be `0`, Warnings may be `1` and Alarms may be `2`.
 iRock may set coil 15 to true if function is supported.
@@ -404,18 +404,18 @@ iRock may set coil 15 to true if function is supported.
 
 | Register | Type           | Size |
 |-|-|-|
-|77| `uint8` | 1 |
+|81| `uint8` | 1 |
 
 Alarm Status for high temperature. No Alarm may be `0`, Warnings may be `1` and Alarms may be `2`.
 iRock may set coil 16 to true if function is supported.
 
 ### Cells
 
-The cell fields repeat as many times as there are cells in the corresponding iRock. Cell numbering starts with 1. The starting address for cell 1 is 78, and the starting address for each subsequent cell is the next available free address. So a Cell Register is calculated as follows:
+The cell fields repeat as many times as there are cells in the corresponding iRock. Cell numbering starts with 1. The starting address for cell 1 is 82, and the starting address for each subsequent cell is the next available free address. So a Cell Register is calculated as follows:
 
 $$Starting Address + Offset + \left(Last Cell Offset + Last Cell Size\right) * \left( Cell Number -1 \right)$$
-$$=78 + Offset + \left(2 + 1\right) * \left( Cell Number -1 \right)$$
-$$=78 + Offset + 3 * \left( Cell Number -1 \right)$$
+$$=82 + Offset + \left(2 + 1\right) * \left( Cell Number -1 \right)$$
+$$=82 + Offset + 3 * \left( Cell Number -1 \right)$$
 
 #### Cell Voltage [V]
 
