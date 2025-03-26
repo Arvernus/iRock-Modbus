@@ -1,5 +1,5 @@
 # yaml-language-server: $schema=./schema.json
-version: "2.0.1"
+version: "2.0.0"
 general:
   registers:
     Manufacturer_ID:
@@ -141,11 +141,25 @@ general:
       address: auto
       ValueType: bool
       description: "Boolean indicating if the charge FET is active. `true` indicates active, `false` indicates inactive."
+      hardware_support_register: auto
     Discharge_FET:
       name: "Discharge FET"
       address: auto
       ValueType: bool
       description: "Boolean indicating if the discharge FET is active. `true` indicates active, `false` indicates inactive."
+      hardware_support_register: auto
+    Allow_Charge:
+      name: "Allow Charge"
+      address: auto
+      ValueType: bool
+      description: "Boolean indicating if charging is allowed. `true` indicates allowed, `false` indicates disallowed."
+      hardware_support_register: auto
+    Allow_Discharge:
+      name: "Allow Discharge"
+      address: auto
+      ValueType: bool
+      description: "Boolean indicating if discharging is allowed. `true` indicates allowed, `false` indicates disallowed."
+      hardware_support_register: auto
     Low_Voltage_Alarm:
       name: "Low Voltage Alarm"
       address: auto
@@ -171,21 +185,25 @@ general:
       address: auto
       ValueType: uint8
       description: "Alarm Status for low SOC. No Alarm may be `0`, Warnings may be `1` and Alarms may be `2`."
+      hardware_support_register: auto
     High_Charge_Current_Alarm:
       name: "High Charge Current Alarm"
       address: auto
       ValueType: uint8
       description: "Alarm Status for high charge current. No Alarm may be `0`, Warnings may be `1` and Alarms may be `2`."
+      hardware_support_register: auto
     High_Discharge_Current_Alarm:
       name: "High Discharge Current Alarm"
       address: auto
       ValueType: uint8
       description: "Alarm Status for high discharge current. No Alarm may be `0`, Warnings may be `1` and Alarms may be `2`."
+      hardware_support_register: auto
     Temperature_Alarm:
       name: "Temperature Alarm"
       address: auto
       ValueType: uint8
       description: "Alarm Status for high temperature. No Alarm may be `0`, Warnings may be `1` and Alarms may be `2`."
+      hardware_support_register: auto
 cells:
   address: auto
   registers:
