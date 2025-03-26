@@ -36,7 +36,7 @@ general:
       name: "Number of Cells"
       address: auto
       ValueType: uint16
-      description: "Number of battery cells in the system. May be any number between 2 and 24."
+      description: "Number of battery cells in the system. May be 4, 8 or 16."
     Battery_Voltage:
       name: "Battery Voltage"
       address: auto
