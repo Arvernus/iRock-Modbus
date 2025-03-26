@@ -174,7 +174,7 @@ Software version currently installed, as a string in semantic versioning format.
 |-|-|-|
 |37| `uint16` | 1 |
 
-Number of battery cells in the system. May be any number between 2 and 24.
+Number of battery cells in the system. May be 4, 8 or 16.
 
 ### Battery Voltage [V]
 
