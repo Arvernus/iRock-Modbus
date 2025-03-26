@@ -133,7 +133,7 @@ general:
       name: "Feedback Shunt Current"
       address: auto
       ValueType: float32
-      description: "Current flowing through the feedback shunt. The feedback shunt messures the current of all ballancers in sum."
+      description: "Current flowing through the feedback shunt. The feedback shunt measures the current of all balancers in sum."
       unit: "A"
       hardware_support_register: auto
     Charge_FET:
